@@ -1,0 +1,12 @@
+{"properties": [
+  {
+    "name": "pincode.distance.gc_maps_api_key",
+    "type": "java.lang.String",
+    "description": "A description for 'pincode.distance.gc_maps_api_key'"
+  },
+  {
+    "name": "pincode-distance.open_weather_map_api_key",
+    "type": "java.lang.String",
+    "description": "A description for 'pincode-distance.open_weather_map_api_key'"
+  }
+]}
