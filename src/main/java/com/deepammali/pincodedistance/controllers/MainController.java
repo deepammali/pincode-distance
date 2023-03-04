@@ -2,7 +2,6 @@ package com.deepammali.pincodedistance.controllers;
 
 import com.deepammali.pincodedistance.services.MainService;
 import com.deepammali.pincodedistance.entities.requests.ApiRequestBody;
-import com.deepammali.pincodedistance.entities.responses.ApiResponseBody;
 
 import java.util.List;
 
@@ -11,7 +10,6 @@ import org.json.JSONObject;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,14 +21,14 @@ public class MainController {
         @Autowired
         private MainService mainService;
 
-        @GetMapping("/hello")
-        public ResponseEntity<String> hello() {
-                return new ResponseEntity<>("Hello World!", HttpStatus.OK);
-        }
-
         @PostMapping("/routes")
-        public ResponseEntity<ApiResponseBody> getDistanceDurationAndRoutes(
+        public ResponseEntity<Object> getDistanceDurationAndRoutes(
                         @RequestBody @Validated ApiRequestBody apiRequestBody) {
+
+                if (!apiRequestBody.getFrom_pincode().matches("\\d{6}")
+                                || !apiRequestBody.getTo_pincode().matches("\\d{6}")) {
+                        return new ResponseEntity<>("Invalid Request", HttpStatus.BAD_REQUEST);
+                }
 
                 List<Double> origin = mainService.getOriginLatLon(apiRequestBody.getFrom_pincode());
                 List<Double> destination = mainService.getDestinationLatLon(apiRequestBody.getTo_pincode());
