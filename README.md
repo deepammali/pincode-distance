@@ -1,4 +1,4 @@
-# FREIGHTFOX BACKEND ASSIGNMENT - PINCODE DISTANCE
+# PINCODE DISTANCE
 
 ## Used [Google's Geocoding API](https://developers.google.com/maps/documentation/geocoding) to convert Pincode to Latitude and Longitude
 
